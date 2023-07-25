@@ -37,9 +37,9 @@ class UsersController {
             throw new AppError("Este email ja esta em uso!");
         }
 
-        user.name = name;
-        user.email = email;
-        user.password = password;
+        user.name = name ?? user.name;
+        user.email = email ?? user.email;
+       
 
         if (password && !old_password) {
             throw new AppError("Você precisa informar a senha antiga para trocar a senha")
@@ -54,14 +54,15 @@ class UsersController {
             user.password = await hash(password, 8);
         }
 
+       
         await database.run(`
         UPDATE users SET
         name = ?,
         email = ?,
         password = ?,
-        updated_at = ?
+        updated_at = DATETIME('now')
         WHERE id = ?`, 
-        [user.name, user.email, user.password, new Date(), id]
+        [user.name, user.email, user.password, id]
         );
 
         return response.status(200).json();
