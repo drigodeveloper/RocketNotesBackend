@@ -7,6 +7,6 @@ const notesRoutes = Router();
 const notesConrtoller = new NotesConrtoller()
 
 
-notesConrtoller.post("/:user_id", notesConrtoller.create);
+notesRoutes.post("/:user_id", notesConrtoller.create);
 
-module.exports = NotesConrtoller;
+module.exports = notesRoutes;
