@@ -2,9 +2,11 @@ const { verify } = require("jsonwebtoken");
 const AppError = require("../utils/AppError");
 const authConfig = require("../config/auth");
 
+
 function ensureAuthentication(request, response, next) {
     const authHeader = request.headers.authorization;
-
+    console.log(authHeader)
+    
     if(!authHeader) {
         throw new AppError("JWT Token inválido.", 401);
     }
