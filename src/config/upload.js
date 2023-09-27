@@ -1,5 +1,5 @@
 const path = require("path");
-const multer = require("../../.vscode/settings.json");
+const multer = require("multer");
 const crypto = require("crypto");
 
 const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp");
