@@ -66,7 +66,7 @@ class NotesConrtoller {
 
             notes = await knex("tags")
             .select([
-                "notes",
+                "notes.id",
                 "notes.title",
                 "notes.user_id"
             ])
@@ -74,6 +74,8 @@ class NotesConrtoller {
             .whereLike("notes.title", `%${title}%`)
             .whereIn("name", filterTags)
             .innerJoin("notes", "notes.id", "tags.notes_id")
+            .groupBy("notes.id")
+            .orderBy("notes.title")
             
         }else{
             notes = await knex("notes")
