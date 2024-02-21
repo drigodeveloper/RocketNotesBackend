@@ -1,13 +1,13 @@
 require("dotenv/config.js")
 require("express-async-errors")
 const express = require("express");
-const uploadConfig = require("./config/upload")
+const uploadConfig = require("./config/upload.js")
 
-const migrationsRun = require("./database/sqlite/migrations")
+const migrationsRun = require("./database/sqlite/migrations/index.js")
 
 const routes = require("./routes/index.js");
 
-const AppError = require("./utils/AppError");
+const AppError = require("./utils/AppError.js");
 const cors = require("cors")
 
 const app = express();
